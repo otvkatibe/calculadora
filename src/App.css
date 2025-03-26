@@ -54,12 +54,12 @@ label {
 
 input {
   width: 70px;
-  height: 55px;
-  padding: 0.5rem;
-  font-size: 24px;
+  height: 60px;
+  padding: 0.8rem;
+  font-size: 20px;
   font-weight: 700;
   border: 2px solid hsl(0, 0%, 86%);
-  border-radius: 12px;
+  border-radius: 20px;
   text-align: center;
   color: hsl(0, 0%, 8%);
 }
@@ -70,14 +70,15 @@ input:focus {
 }
 
 button {
-  width: 100%;
-  padding: 0.9rem;
-  font-size: 22px;
+  width: 20%;
+  padding: 0.5rem;
+  height: 60px;
+  font-size: 20px;
   font-weight: 700;
   color: hsl(0, 0%, 100%);
   background-color: hsl(259, 100%, 65%);
   border: none;
-  border-radius: 12px;
+  border-radius: 30px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
 }
@@ -108,7 +109,12 @@ p {
   color: hsl(0, 0%, 8%);
 }
 
-@media (max-width: 375px) {
+@media (max-width: 390px) {
+  #root {
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+  
   h1 {
     font-size: 22px;
   }
@@ -125,5 +131,13 @@ p {
   h2,
   p {
     font-size: 20px;
+  }
+
+  form {
+    gap: 8px;
+  }
+
+  button {
+    width: 80%;
   }
 }

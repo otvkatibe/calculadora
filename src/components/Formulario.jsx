@@ -28,7 +28,7 @@ const Formulario = ({ onCalcular }) => {
                 <label>Ano</label>
                 <input type = 'number' placeholder = "" value = {ano} onChange = {(e) => setAno(e.target.value)} required/>
             </div>
-            <button type = "submit" >Calcular</button>
+            <button type = "submit" >↓</button>
         </form>
     );
 
