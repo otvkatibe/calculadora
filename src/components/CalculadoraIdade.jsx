@@ -24,7 +24,6 @@ function CalculadoraIdade() {
 
   return (
     <div>
-      <h1>Calculadora de Idade</h1>
       <Formulario onCalcular = {handleCalcular} />
       <Erro mensagem = {erro} />
       {resultado && <Resultado {...resultado} />}
