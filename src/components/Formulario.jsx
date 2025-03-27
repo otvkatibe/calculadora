@@ -7,17 +7,21 @@ const Formulario = ({ onCalcular }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onCalcular({
-            dia: parseInt(dia, 10),
-            mes: parseInt(mes, 10),
-            ano: parseInt(ano, 10),
-        });
+        if (dia.length === 2 && mes.length === 2 && ano.length === 4) {
+            onCalcular({
+                dia: parseInt(dia, 10),
+                mes: parseInt(mes, 10),
+                ano: parseInt(ano, 10),
+            });
+        } else {
+            alert("Por favor, insira o formato correto: DD/MM/YYYY");
+        }
     };
 
-    const handleChange = (e, setter) => {
+    const handleChange = (e, setter, maxLength) => {
         const value = e.target.value;
-        
-        if (/^\d*$/.test(value)) {
+
+        if (/^\d*$/.test(value) && value.length <= maxLength) {
             setter(value);
         }
     };
@@ -26,32 +30,35 @@ const Formulario = ({ onCalcular }) => {
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Dia</label>
-                <input 
+                <input
                     type='text'
-                    value={dia} 
-                    onChange={(e) => handleChange(e, setDia)} 
-                    required 
-                    placeholder="Digite o dia" 
+                    value={dia}
+                    onChange={(e) => handleChange(e, setDia, 2)}
+                    required
+                    placeholder="DD"
+                    maxLength={2}
                 />
             </div>
             <div>
                 <label>Mês</label>
-                <input 
-                    type='text' 
-                    value={mes} 
-                    onChange={(e) => handleChange(e, setMes)} 
-                    required 
-                    placeholder="Digite o mês" 
+                <input
+                    type='text'
+                    value={mes}
+                    onChange={(e) => handleChange(e, setMes, 2)}
+                    required
+                    placeholder="MM"
+                    maxLength={2}
                 />
             </div>
             <div>
                 <label>Ano</label>
-                <input 
-                    type='text' 
-                    value={ano} 
-                    onChange={(e) => handleChange(e, setAno)} 
-                    required 
-                    placeholder="Digite o ano" 
+                <input
+                    type='text'
+                    value={ano}
+                    onChange={(e) => handleChange(e, setAno, 4)}
+                    required
+                    placeholder="YYYY"
+                    maxLength={4}
                 />
             </div>
             <button type="submit">↓</button>
