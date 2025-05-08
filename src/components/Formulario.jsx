@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { calcularIdade } from "./calcularIdade";
-import { validarData } from "./validarData";
+import { calcularIdade } from "./utils/calcularIdade";
+import { validarData } from "./utils/validarData";
 import Erro from "./Erro";
 import Formulario from "./Formulario";
 import Resultado from "./Resultado";
