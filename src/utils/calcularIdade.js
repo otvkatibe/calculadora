@@ -1,4 +1,4 @@
-export const calcularIdade = ({ dia, mes, ano }) => {
+const calcularIdade = ({ dia, mes, ano }) => {
   const hoje = new Date();
   const dataNascimento = new Date(ano, mes - 1, dia);
 
@@ -19,3 +19,5 @@ export const calcularIdade = ({ dia, mes, ano }) => {
 
   return { anos: idadeAnos, meses: idadeMeses, dias: idadeDias };
 };
+
+export default { calcularIdade };

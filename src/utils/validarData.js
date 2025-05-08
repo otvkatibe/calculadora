@@ -1,4 +1,4 @@
-export const validarData = ({ dia, mes, ano }) => {
+const validarData = ({ dia, mes, ano }) => {
   const hoje = new Date();
   const dataNascimento = new Date(ano, mes - 1, dia);
  
@@ -31,3 +31,5 @@ export const validarData = ({ dia, mes, ano }) => {
   
   return { valido: true, mensagem: "" };
 };
+
+export default { validarData };
