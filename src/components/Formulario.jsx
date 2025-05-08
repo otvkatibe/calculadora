@@ -1,95 +1,35 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import { calcularIdade } from "./calcularIdade";
+import { validarData } from "./validarData";
+import Erro from "./Erro";
+import Formulario from "./Formulario";
+import Resultado from "./Resultado";
 
-const Formulario = ({ onCalcular }) => {
-  const [formData, setFormData] = useState({
-    dia: "",
-    mes: "",
-    ano: ""
-  });
-  const [erros, setErros] = useState({
-    dia: "",
-    mes: "",
-    ano: ""
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+function CalculadoraIdade() {
+  const [resultado, setResultado] = useState(null);
+  const [erro, setErro] = useState("");
+  
+  const handleCalcular = (data) => {
+    const validacao = validarData(data);
     
-    const novosErros = {};
-    if (!formData.dia) novosErros.dia = "Campo obrigatório";
-    if (!formData.mes) novosErros.mes = "Campo obrigatório";
-    if (!formData.ano) novosErros.ano = "Campo obrigatório";
-    
-    if (Object.keys(novosErros).length > 0) {
-      setErros(novosErros);
+    if (!validacao.valido) {
+      setErro(validacao.mensagem);
+      setResultado(null);
       return;
     }
-
-    onCalcular({
-      dia: parseInt(formData.dia, 10),
-      mes: parseInt(formData.mes, 10),
-      ano: parseInt(formData.ano, 10),
-    });
-  };
-
-  const handleChange = (e, campo, maxLength) => {
-    const value = e.target.value.replace(/\D/g, "");
-    if (value.length <= maxLength) {
-      setFormData(prev => ({ ...prev, [campo]: value }));
-      setErros(prev => ({ ...prev, [campo]: "" }));
-    }
+    
+    setErro("");
+    setResultado(calcularIdade(data));
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-container">
-      <div className="input-group">
-        <label className={erros.dia ? "label-invalido" : ""}>Dia</label>
-        <input
-          type="text"
-          value={formData.dia}
-          onChange={(e) => handleChange(e, "dia", 2)}
-          placeholder="DD"
-          maxLength={2}
-          className={erros.dia ? "input-invalido" : ""}
-        />
-        {erros.dia && <span className="error-message">{erros.dia}</span>}
-      </div>
-      <div className="input-group">
-        <label className={erros.mes ? "label-invalido" : ""}>Mês</label>
-        <input
-          type="text"
-          value={formData.mes}
-          onChange={(e) => handleChange(e, "mes", 2)}
-          placeholder="MM"
-          maxLength={2}
-          className={erros.mes ? "input-invalido" : ""}
-        />
-        {erros.mes && <span className="error-message">{erros.mes}</span>}
-      </div>
-      <div className="input-group">
-        <label className={erros.ano ? "label-invalido" : ""}>Ano</label>
-        <input
-          type="text"
-          value={formData.ano}
-          onChange={(e) => handleChange(e, "ano", 4)}
-          placeholder="YYYY"
-          maxLength={4}
-          className={erros.ano ? "input-invalido" : ""}
-        />
-        {erros.ano && <span className="error-message">{erros.ano}</span>}
-      </div>
-      <button type="submit" className="submit-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 5v14M19 12l-7 7-7-7"/>
-        </svg>
-      </button>
-    </form>
+    <div className="calculadora-container">
+      <h1>Calculadora de Idade</h1>
+      <Formulario onCalcular={handleCalcular} />
+      <Erro mensagem={erro} />
+      {resultado && <Resultado {...resultado} />}
+    </div>
   );
-};
+}
 
-Formulario.propTypes = {
-  onCalcular: PropTypes.func.isRequired
-};
-
-export default Formulario;
+export default CalculadoraIdade;
