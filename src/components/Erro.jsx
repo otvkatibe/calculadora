@@ -1,5 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const Erro = ({ mensagem }) => mensagem ? <div style = {{color: "red" }}>{mensagem}</div> : null;
+const Erro = ({ mensagem }) => (
+  mensagem ? <div className="error-message">{mensagem}</div> : null
+);
+
+Erro.propTypes = {
+  mensagem: PropTypes.string
+};
 
 export default Erro;
