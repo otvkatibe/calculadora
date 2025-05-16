@@ -1,4 +1,3 @@
-import React from "react";
 import CalculadoraIdade from "./components/CalculadoraIdade";
 import "./App.css";
 

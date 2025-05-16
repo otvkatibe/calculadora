@@ -20,4 +20,4 @@ const calcularIdade = ({ dia, mes, ano }) => {
   return { anos: idadeAnos, meses: idadeMeses, dias: idadeDias };
 };
 
-export default { calcularIdade };
+export { calcularIdade };

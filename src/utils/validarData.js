@@ -32,4 +32,4 @@ const validarData = ({ dia, mes, ano }) => {
   return { valido: true, mensagem: "" };
 };
 
-export default { validarData };
+export { validarData };
